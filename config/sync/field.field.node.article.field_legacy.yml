@@ -1,0 +1,23 @@
+uuid: f2f95be9-7abc-409b-858f-c91e81c6269b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legacy
+    - node.type.article
+id: node.article.field_legacy
+field_name: field_legacy
+entity_type: node
+bundle: article
+label: Legacy
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,12 @@
+uuid: e408e32f-d6a9-4e5e-bb4a-2fc3b7b83355
+langcode: es
+status: true
+dependencies: {  }
+id: zarpele
+label: 'Default zarpele group'
+description: 'Default group to handle Zarpele migration from CSV to Drupal 9.'
+source_type: 'Drupal 9'
+module: null
+shared_configuration:
+  source:
+    key: upgrade

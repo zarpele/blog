@@ -1,0 +1,129 @@
+id: zarpele_migrate_comment
+label: 'Wordpress CSV to Drupal 9 comment'
+migration_group: zarpele
+audit: true
+migration_tags:
+  - Drupal 9
+  - Comment
+destination:
+  plugin: 'entity:comment'
+source:
+  constants:
+    entity_type: node
+  plugin: csv
+  # Full path to the file.
+  path: 'public://migrate/zarpele-wp-comments.csv'
+  # Column delimiter. Comma (,) by default.
+  delimiter: ','
+  # Field enclosure. Double quotation marks (") by default.
+  enclosure: '"'
+  # The row to be used as the CSV header (indexed from 0),
+  # or null if there is no header row.
+  header_offset: 0
+  # The column(s) to use as a key. Each column specified will
+  # create an index in the migration table and too many columns
+  # may throw an index size error.
+  ids:
+    - cid
+  # Here we identify the columns of interest in the source file.
+  # Each numeric key is the 0-based index of the column.
+  # For each column, the key below is the field name assigned to
+  # the data on import, to be used in field mappings below.
+  # The label value is a user-friendly string for display by the
+  # migration UI.
+  fields:
+    0:
+      name: cid
+      label: cid
+    1:
+      name: cpid
+      label: 'Comment post id'
+    2:
+      name: cauthor
+      label: Author
+    3:
+      name: caemail
+      label: Email
+    4:
+      name: caurl
+      label: url
+    5:
+      name: caip
+      label: ip
+    6:
+      name: cdate
+      label: Date
+    7:
+      name: cgmtdate
+      label: 'GMT Date'
+    8:
+      name: ccontent
+      label: Content
+    9:
+      name: ckarma
+      label: Karma
+    10:
+      name: capproved
+      label: Approved
+    11:
+      name: cagent
+      label: Agent
+    12:
+      name: ctype
+      label: Type
+    13:
+      name: cparent
+      label: Parent
+    14:
+      name: cuid
+      label: wuid
+process:
+  # If you are using this file to build a custom migration consider removing
+  # the cid field to allow incremental migrations.
+#  cid: cid
+  entity_id:
+    -
+      plugin: migration_lookup
+      migration: zarpele_migrate_post
+      source: cpid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  entity_type: 'constants/entity_type'
+  comment_type:
+    plugin: default_value
+    default_value: comment
+  langcode:
+    plugin: default_value
+    default_value: 'es'
+  uid: cuid
+  name:
+    plugin: substr
+    length: 60
+    source: cauthor
+  mail: caemail
+  homepage:
+    plugin: zarpele_clean_text
+    source: caurl
+  hostname: caip
+  created:
+    plugin: format_date
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    source: cgmtdate
+    settings:
+      validate_format: false
+  status: capproved
+  comment_body/value:
+    plugin: zarpele_clean_text
+    source: ccontent
+  comment_body/format:
+    plugin: default_value
+    default_value: restricted_html
+  field_name:
+    plugin: default_value
+    default_value: field_comments
+migration_dependencies:
+  required:
+    - zarpele_migrate_post

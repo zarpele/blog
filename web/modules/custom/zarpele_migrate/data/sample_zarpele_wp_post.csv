@@ -1,0 +1,17 @@
+wp_ID,wp_post_date,wp_post_modified,wp_post_status,wp_post_title,wp_post_content,wp_post_excerpt,wp_post_parent,wp_post_name,wp_post_type,wp_post_mime_type,wp_ping_status,wp_comment_status,wp_menu_order,wp_post_author,tx_category,tx_post_tag,tx_post_format,fi_thumbnail,cf__edit_lock,cf__edit_last,cf__wp_attachment_metadata,cf__wp_attached_file,cf__wp_old_slug,cf__wp_page_template,cf__syntaxhighlighter_encoded,cf_enclosure,cf_Hola,cf__wp_attachment_image_alt,cf__aioseop_title,cf__aioseop_keywords,cf__aioseop_description,cf__wp_attachment_context,cf__wp_attachment_is_custom_background,cf__menu_item_type,cf__menu_item_menu_item_parent,cf__menu_item_object_id,cf__menu_item_object,cf__menu_item_target,cf__menu_item_classes,cf__menu_item_xfn,cf__menu_item_url,cf__oembed_3a1142702209e1f85af5225013659924,cf__oembed_631ad5c94bf22692acf156d1a28cc0f8,cf_wp-syntax-cache-content
+8,2007-12-06 18:15:00,2008-09-02 23:25:52,publish,Primer Post Linux,"Hola en mi primer post linuxero les voy a mostar mi escritorio, ya de por si les digo que uso la distro Ubuntu, las capturas son del cubo en Ubuntu 7.04, mas adelante posteare el cubo (compiz) todo junto les recuerdo que la version 7.10 de Ubuntu Gutsy Gibbon ya trae incorporado el compiz solo deben activarlo bajando este paquete
+
+desde consola:<span style=""font-style:italic;"">
+<blockquote><span style=""font-weight:bold;"">sudo aptitude install compizconfig-settings-manager</span></blockquote>
+</span>
+
+recuerden no tener otro gestor abierto (synaptis,etc)
+
+Ahi van las capturas:
+<div style=""text-align:center;""><a href=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo.jpg""><img style=""margin: 0pt 10px 10px 0pt; cursor: pointer; width: 320px;"" src=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo.jpg"" border=""0"" alt="""" /></a></div>
+<div style=""text-align:center;""><a href=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-1.jpg""><img style=""margin: 0pt 10px 10px 0pt; cursor: pointer; width: 320px;"" src=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-1.jpg"" border=""0"" alt="""" /></a></div>
+<div style=""text-align:center;""><a href=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-2.jpg""><img style=""margin: 0pt 10px 10px 0pt; cursor: pointer; width: 320px;"" src=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-2.jpg"" border=""0"" alt="""" /></a></div>
+<div style=""text-align:center;""><a href=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-3.jpg""><img style=""margin: 0pt 10px 10px 0pt; cursor: pointer; width: 320px;"" src=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-3.jpg"" border=""0"" alt="""" /></a></div>
+<div style=""text-align:center;""><a href=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-4.jpg""><img style=""margin: 0pt 10px 10px 0pt; cursor: pointer; width: 320px;"" src=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-4.jpg"" border=""0"" alt="""" /></a></div>
+<div style=""text-align:center;""><a href=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-5.jpg""><img style=""margin: 0pt 10px 10px 0pt; cursor: pointer; width: 320px;"" src=""http://afulluser.iespana.es/zarpele/linuxzarpele/post1/pantallazo-5.jpg"" border=""0"" alt="""" /></a></div>
+Saludos...",,0,primer-post-linux,post,,open,open,0,admin,uncategorized:Uncategorized,cualquiera:Cualquiera,,,1229552356,1,,,,,,,,,,,,,,,,,,,,,,,,

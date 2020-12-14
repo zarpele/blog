@@ -1,0 +1,118 @@
+uuid: 4c7b0634-418b-4a6b-9617-885596279c4b
+langcode: es
+status: true
+dependencies: {  }
+id: zarpele_migrate_comment
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 9'
+  - Comment
+migration_group: zarpele
+label: 'Wordpress CSV to Drupal 9 comment'
+source:
+  constants:
+    entity_type: node
+  plugin: csv
+  path: 'public://migrate/zarpele-wp-comments.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_offset: 0
+  ids:
+    - cid
+  fields:
+    -
+      name: cid
+      label: cid
+    -
+      name: cpid
+      label: 'Comment post id'
+    -
+      name: cauthor
+      label: Author
+    -
+      name: caemail
+      label: Email
+    -
+      name: caurl
+      label: url
+    -
+      name: caip
+      label: ip
+    -
+      name: cdate
+      label: Date
+    -
+      name: cgmtdate
+      label: 'GMT Date'
+    -
+      name: ccontent
+      label: Content
+    -
+      name: ckarma
+      label: Karma
+    -
+      name: capproved
+      label: Approved
+    -
+      name: cagent
+      label: Agent
+    -
+      name: ctype
+      label: Type
+    -
+      name: cparent
+      label: Parent
+    -
+      name: cuid
+      label: wuid
+process:
+  entity_id:
+    -
+      plugin: migration_lookup
+      migration: zarpele_migrate_post
+      source: cpid
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  entity_type: constants/entity_type
+  comment_type:
+    plugin: default_value
+    default_value: comment
+  langcode:
+    plugin: default_value
+    default_value: es
+  uid: cuid
+  name:
+    plugin: substr
+    length: 60
+    source: cauthor
+  mail: caemail
+  homepage:
+    plugin: zarpele_clean_text
+    source: caurl
+  hostname: caip
+  created:
+    plugin: format_date
+    from_format: 'Y-m-d H:i:s'
+    to_format: U
+    source: cgmtdate
+    settings:
+      validate_format: false
+  status: capproved
+  comment_body/value:
+    plugin: zarpele_clean_text
+    source: ccontent
+  comment_body/format:
+    plugin: default_value
+    default_value: restricted_html
+  field_name:
+    plugin: default_value
+    default_value: field_comments
+destination:
+  plugin: 'entity:comment'
+migration_dependencies:
+  required:
+    - zarpele_migrate_post

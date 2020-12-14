@@ -1,0 +1,23 @@
+uuid: 52203387-d617-4fce-9e66-a1bfe23c834a
+langcode: es
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - bartik
+_core:
+  default_config_hash: jr5yAsk95SLh_ikC6wAWcqapwdBTini5eFY_FQu2gGc
+id: bartik_search_form_wide
+theme: bartik
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  provider: search
+  label_display: '0'
+  page_id: ''
+visibility: {  }

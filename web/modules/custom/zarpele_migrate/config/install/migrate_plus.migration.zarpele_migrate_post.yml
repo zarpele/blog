@@ -1,0 +1,173 @@
+id: zarpele_migrate_post
+label: 'Wordpress CSV to Drupal 9 post'
+migration_group: zarpele
+audit: true
+migration_tags:
+  - Drupal 9
+  - Content
+destination:
+  plugin: 'entity:node'
+source:
+  plugin: csv
+  # Full path to the file.
+  path: 'public://migrate/zarpele-wp-post.csv'
+  # Column delimiter. Comma (,) by default.
+  delimiter: ','
+  # Field enclosure. Double quotation marks (") by default.
+  enclosure: '"'
+  # The row to be used as the CSV header (indexed from 0),
+  # or null if there is no header row.
+  header_offset: 0
+  # The column(s) to use as a key. Each column specified will
+  # create an index in the migration table and too many columns
+  # may throw an index size error.
+  ids:
+    - wp_ID
+  # Here we identify the columns of interest in the source file.
+  # Each numeric key is the 0-based index of the column.
+  # For each column, the key below is the field name assigned to
+  # the data on import, to be used in field mappings below.
+  # The label value is a user-friendly string for display by the
+  # migration UI.
+  fields:
+    0:
+      name: wp_ID
+      label: wpid
+    1:
+      name: wp_post_date
+      label: Created
+    2:
+      name: wp_post_modified
+      label: Modified
+    3:
+      name: wp_post_status
+      label: Status
+    4:
+      name: wp_post_title
+      label: Title
+    5:
+      name: wp_post_content
+      label: Content
+    6:
+      name: wp_post_excerpt
+      label: Excerpt
+    7:
+      name: wp_post_parent
+      label: Parent
+    8:
+      name: wp_post_name
+      label: Post Names
+    9:
+      name: wp_post_type
+      label: Post Type
+    10:
+      name: wp_post_mime_type
+      label: Post Mime Type
+    11:
+      name: wp_ping_status
+      label: Ping Status
+    12:
+      name: wp_comment_status
+      label: Comment Status
+    13:
+      name: wp_menu_order
+      label: Menu Order
+    14:
+      name: wp_post_author
+      label: Post Author
+    15:
+      name: tx_category
+      label: Categories
+    16:
+      name: tx_post_tag
+      label: Tags
+process:
+  type:
+    plugin: default_value
+    default_value: article
+  nid: wp_ID
+  title: wp_post_title
+  status:
+    plugin: default_value
+    default_value: 1
+  uid:
+    plugin: default_value
+    default_value: 1
+  langcode:
+    plugin: default_value
+    default_value: 'es'
+  created:
+    plugin: format_date
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    source: wp_post_date
+    settings:
+      validate_format: false
+  changed:
+    plugin: format_date
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    source: wp_post_modified
+    settings:
+      validate_format: false
+  body/value:
+    plugin: zarpele_clean_text
+    source: wp_post_content
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  field_tags:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: tx_post_tag
+    -
+      plugin: explode
+      delimiter: ','
+    -
+      plugin: explode
+      delimiter: ':'
+    -
+      plugin: extract
+      index:
+        - 0
+        - 1
+    -
+      plugin: entity_generate
+  field_legacy:
+    plugin: default_value
+    default_value: 1
+  tmp_month:
+    -
+      plugin: explode
+      delimiter: '-'
+      source: wp_post_date
+    -
+      plugin: extract
+      index:
+        - '1'
+  tmp_year:
+    -
+      plugin: explode
+      delimiter: '-'
+      source: wp_post_date
+    -
+      plugin: extract
+      index:
+        - '0'
+  tmp_directory_separator:
+    plugin: default_value
+    default_value: '/'
+  path/pathauto:
+    plugin: default_value
+    default_value: 0
+  path/alias:
+    plugin: concat
+    delimiter: ''
+    source:
+      - '@tmp_directory_separator'
+      - '@tmp_year'
+      - '@tmp_directory_separator'
+      - '@tmp_month'
+      - '@tmp_directory_separator'
+      - wp_post_name

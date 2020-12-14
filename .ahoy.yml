@@ -1,0 +1,41 @@
+ahoyapi: v2
+commands:
+  ps:
+    cmd: docker-compose ps "$@"
+    usage: List containers.
+
+  start:
+    cmd: docker-compose start "$@"
+    usage: Start services.
+
+  stop:
+    cmd: docker-compose stop "$@"
+    usage: Stop services.
+
+  restart:
+    cmd: docker-compose restart "$@"
+    usage: Restart services.
+
+  up:
+    cmd: docker-compose up -d "$@"
+    usage: Create and start containers.
+
+  down:
+    cmd: docker-compose down "$@"
+    usage: Stop and remove containers, networks, images, and volumes.
+
+  bash:
+    cmd: docker-compose exec --user=wodby php bash
+    usage: Run bash into php service container.
+
+  redis:
+    cmd: docker-compose exec --user=redis redis redis-cli "$@"
+    usage: Run redis commands
+
+  logs:
+    cmd: docker-compose logs -f "$@"
+    usage: Show logs
+
+  destroy:
+    cmd: docker-compose down -v
+    usage: Stop and remove containers, networks, images, and destroy volumes.
